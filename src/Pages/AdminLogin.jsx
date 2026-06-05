@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const ADMIN_EMAIL = "admin@gmail.com";
+  const ADMIN_PASSWORD = "admin123";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,33 +19,16 @@ function AdminLogin() {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      const res = await fetch("http://localhost:5000/adminlogin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-      console.log("LOGIN RESPONSE:", data);
-
-      if (res.ok) {
-        localStorage.setItem("token", data.token);
-         // ✅ redirect
-      } else {
-        alert(data.message || "Login failed");
-      }
-
-    } catch (err) {
-      console.error("Login Error:", err);
-      alert("Server error");
-    } finally {
-      setLoading(false);
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+      localStorage.setItem("token", "static-admin-token");
+      navigate("/dashboard", { replace: true });
+    } else {
+      alert("Invalid email or password");
     }
+
+    setLoading(false);
   };
 
   return (
