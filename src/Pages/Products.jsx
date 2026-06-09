@@ -6,7 +6,7 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   async function getProducts(){
-    let result = await fetch("http://localhost:5000/admin/products/viewproducts");
+    let result = await fetch("https://ecom-common-backend.onrender.com/admin/products/viewproducts");
     let res = await result.json();
     setProducts(res);
   }

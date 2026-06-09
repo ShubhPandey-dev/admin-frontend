@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -21,6 +21,7 @@ import Logout from "./Pages/Logout";
 /* ✅ Protected Layout */
 const ProtectedLayout = ({ children }) => {
   const token = localStorage.getItem("token");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   if (!token) {
     return <Navigate to="/login" replace />;
@@ -28,14 +29,26 @@ const ProtectedLayout = ({ children }) => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-[#f4f7fb]">
-      <Sidebar />
+      {isSidebarOpen ? (
+        <button
+          type="button"
+          aria-label="Close sidebar"
+          className="fixed inset-0 z-40 bg-slate-950/45 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      ) : null}
 
-      <div className="flex min-h-0 flex-1 flex-col">
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
         <div className="shrink-0">
-          <Navbar />
+          <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
         </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto">
+        <div data-shell-scroll className="min-h-0 flex-1 overflow-y-auto">
           {children}
         </div>
       </div>

@@ -9,7 +9,7 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://ecom-common-backend.onrender.com";
 
 const initialOfferForm = {
   name: "",

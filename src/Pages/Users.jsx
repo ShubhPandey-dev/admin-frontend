@@ -24,7 +24,7 @@ function Users() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/admin/users/");
+      const res = await fetch("https://ecom-common-backend.onrender.com/admin/users/");
       const data = await res.json();
       setUsers(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -41,7 +41,7 @@ function Users() {
     const newStatus = user.status === "Active" ? "Inactive" : "Active";
 
     try {
-      await fetch(`http://localhost:5000/admin/users/updateuser/${user.user_id}`, {
+      await fetch(`https://ecom-common-backend.onrender.com/admin/users/updateuser/${user.user_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -177,7 +177,7 @@ function Users() {
             initialValues={{ name: "", email: "", roleid: "" }}
             validationSchema={userSchema}
             onSubmit={async (values) => {
-              await fetch("http://localhost:5000/admin/users/adduser", {
+              await fetch("https://ecom-common-backend.onrender.com/admin/users/adduser", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
@@ -227,7 +227,7 @@ function Users() {
             validationSchema={userSchema}
             onSubmit={async (values) => {
               await fetch(
-                `http://localhost:5000/admin/users/updateuser/${values.id}`,
+                `https://ecom-common-backend.onrender.com/admin/users/updateuser/${values.id}`,
                 {
                   method: "PUT",
                   headers: { "Content-Type": "application/json" },

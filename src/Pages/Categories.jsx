@@ -33,7 +33,7 @@ function Categories() {
   // ✅ Fetch Categories
   async function viewCategory() {
     try {
-      let result = await fetch("http://localhost:5000/admin/categories/viewcategories");
+      let result = await fetch("https://ecom-common-backend.onrender.com/admin/categories/viewcategories");
       let res = await result.json();
       setCategories(Array.isArray(res) ? res : []);
     } catch (err) {
@@ -56,7 +56,7 @@ function Categories() {
       return;
     }
 
-    let result = await fetch("http://localhost:5000/admin/categories/addcategory", {
+    let result = await fetch("https://ecom-common-backend.onrender.com/admin/categories/addcategory", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ cname: finalCategory })
@@ -92,7 +92,7 @@ function Categories() {
     }
 
     let result = await fetch(
-      `http://localhost:5000/admin/categories/updatecategory/${editCategory.cid}`,
+      `https://ecom-common-backend.onrender.com/admin/categories/updatecategory/${editCategory.cid}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

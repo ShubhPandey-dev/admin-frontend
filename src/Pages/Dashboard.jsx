@@ -16,13 +16,13 @@ function Dashboard() {
   const [error, setError] = useState("");
 
   const fetchUsers = async () => {
-    const res = await fetch("http://localhost:5000/admin/users/");
+    const res = await fetch("https://ecom-common-backend.onrender.com/admin/users/");
     const data = await res.json();
     setUsers(Array.isArray(data) ? data : []);
   };
 
   const fetchOrders = async () => {
-    const res = await fetch("http://localhost:5000/orders/vieworders");
+    const res = await fetch("https://ecom-common-backend.onrender.com/orders/vieworders");
     const result = await res.json();
     setOrders(Array.isArray(result) ? result : []);
   };

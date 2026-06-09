@@ -82,10 +82,10 @@ function Payments() {
     });
   };
  const downloadReport = () => {
-  window.open("http://localhost:5000/admin/payment-report");
+  window.open("https://ecom-common-backend.onrender.com/admin/payment-report");
 };
   async function getTransaction() {
-    let result = await fetch("http://localhost:5000/admin/payment/paymentHistory");
+    let result = await fetch("https://ecom-common-backend.onrender.com/admin/payment/paymentHistory");
     let res = await result.json();
     setTransaction(res);
   }

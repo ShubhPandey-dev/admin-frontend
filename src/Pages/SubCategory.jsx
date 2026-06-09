@@ -21,7 +21,7 @@ function SubCategory() {
   async function getSubcategories() {
     try {
       let result = await fetch(
-        "http://localhost:5000/admin/subcategories/viewsubCategory",
+        "https://ecom-common-backend.onrender.com/admin/subcategories/viewsubCategory",
       );
       let res = await result.json();
 
@@ -38,7 +38,7 @@ function SubCategory() {
   /* ------------------ FETCH CATEGORIES ------------------ */
   async function getCategories() {
     try {
-      let result = await fetch("http://localhost:5000/admin/categories/viewcategories");
+      let result = await fetch("https://ecom-common-backend.onrender.com/admin/categories/viewcategories");
       let res = await result.json();
       setCategories(Array.isArray(res) ? res : []);
     } catch (err) {
@@ -79,7 +79,7 @@ function SubCategory() {
   async function toggleStatus(id) {
     try {
       const result = await fetch(
-        `http://localhost:5000/admin/subcategories/toggleStatus/${id}`,
+        `https://ecom-common-backend.onrender.com/admin/subcategories/toggleStatus/${id}`,
         { method: "PUT" },
       );
 
@@ -102,7 +102,7 @@ function SubCategory() {
 
     try {
       const result = await fetch(
-        "http://localhost:5000/admin/subcategories/addsubcategory",
+        "https://ecom-common-backend.onrender.com/admin/subcategories/addsubcategory",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

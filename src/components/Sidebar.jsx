@@ -13,7 +13,7 @@ import { FaFileLines } from "react-icons/fa6";
 import { IoSettingsOutline, IoChevronDownOutline } from "react-icons/io5";
 import { AiOutlineBarChart } from "react-icons/ai";
 
-function Sidebar() {
+function Sidebar({ isOpen = false, onClose }) {
   const location = useLocation();
   const [isCategoryOpen, setIsCategoryOpen] = useState(
     location.pathname === "/categories" || location.pathname === "/subCategory",
@@ -48,7 +48,11 @@ function Sidebar() {
     }`;
 
   return (
-    <aside className="sticky top-0 h-screen w-[280px] shrink-0 border-r border-white/10 bg-gradient-to-b from-[#081b45] via-[#06163a] to-[#050e26] p-3 text-white shadow-[0_24px_80px_rgba(8,27,69,0.24)] lg:w-[300px]">
+    <aside
+      className={`fixed inset-y-0 left-0 z-50 h-screen w-[min(86vw,300px)] shrink-0 border-r border-white/10 bg-gradient-to-b from-[#081b45] via-[#06163a] to-[#050e26] p-3 text-white shadow-[0_24px_80px_rgba(8,27,69,0.24)] transition-transform duration-300 lg:sticky lg:top-0 lg:z-auto lg:w-[300px] lg:translate-x-0 ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
       <div className="flex h-full flex-col overflow-hidden rounded-[30px] border border-white/10 bg-white/5 p-4 backdrop-blur">
         <div className="flex items-center gap-3 border-b border-white/10 px-1 pb-5">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-lg">
@@ -68,7 +72,7 @@ function Sidebar() {
           </p>
 
           {topMenu.map((item) => (
-            <NavLink key={item.name} to={item.path} className={navClass}>
+            <NavLink key={item.name} to={item.path} className={navClass} onClick={onClose}>
               <span className="text-xl">{item.icon}</span>
               <span className="text-[15px] font-semibold">{item.name}</span>
             </NavLink>
@@ -98,6 +102,7 @@ function Sidebar() {
             <div className="ml-5 flex flex-col gap-1 border-l border-white/10 pl-4">
               <NavLink
                 to="/categories"
+                onClick={onClose}
                 className={({ isActive }) =>
                   `rounded-xl px-3 py-2 text-sm font-medium transition ${
                     isActive
@@ -110,6 +115,7 @@ function Sidebar() {
               </NavLink>
               <NavLink
                 to="/subCategory"
+                onClick={onClose}
                 className={({ isActive }) =>
                   `rounded-xl px-3 py-2 text-sm font-medium transition ${
                     isActive
@@ -128,7 +134,7 @@ function Sidebar() {
           </p>
 
           {bottomMenu.map((item) => (
-            <NavLink key={item.name} to={item.path} className={navClass}>
+            <NavLink key={item.name} to={item.path} className={navClass} onClick={onClose}>
               <span className="text-xl">{item.icon}</span>
               <span className="text-[15px] font-semibold">{item.name}</span>
             </NavLink>

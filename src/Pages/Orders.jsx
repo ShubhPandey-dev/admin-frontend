@@ -7,7 +7,7 @@ function Orders() {
   const [orders , setOrders] = useState([]);
 
   async function getOrders(){
-    let res =  await axios.get('http://localhost:5000/orders/vieworders');
+    let res =  await axios.get('https://ecom-common-backend.onrender.com/orders/vieworders');
     setOrders(res.data);
   }
 

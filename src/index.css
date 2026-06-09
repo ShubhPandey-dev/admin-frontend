@@ -16,3 +16,39 @@ body,
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+table {
+  min-width: 720px;
+}
+
+th,
+td {
+  vertical-align: top;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  h1 {
+    overflow-wrap: anywhere;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+}
